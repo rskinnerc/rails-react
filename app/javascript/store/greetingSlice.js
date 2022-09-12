@@ -1,8 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
   message: '',
-}
+};
 
 export const fetchRandomGreeting = createAsyncThunk(
   'greeting/fetchRandomGreeting',
@@ -10,14 +10,14 @@ export const fetchRandomGreeting = createAsyncThunk(
     const response = await fetch('http://127.0.0.1:3000/greetings', {
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       mode: 'same-origin',
-    })
-    const data = await response.json()
-    return data
-  }
-)
+    });
+    const data = await response.json();
+    return data;
+  },
+);
 
 export const greetingSlice = createSlice({
   name: 'greeting',
@@ -26,13 +26,13 @@ export const greetingSlice = createSlice({
 
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchRandomGreeting.fulfilled, (state, action) => {
-      state.message = action.payload[0]
-    })
+    builder.addCase(fetchRandomGreeting.fulfilled, (state, { payload }) => {
+      const [message] = payload;
+      state.message = message;
+    });
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { } = greetingSlice.actions
-
-export default greetingSlice.reducer
+const { reducer } = greetingSlice;
+export default reducer;
