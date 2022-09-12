@@ -10,7 +10,7 @@ import {
   Route,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Greetings from './components/greetings';
+import Greeting from './components/greeting';
 import store from './store/store';
 
 function App() {
@@ -18,9 +18,9 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <div>
-          <h1>Hello, React Router!</h1>
+          <h1>Greetings App!</h1>
           <Routes>
-            <Route path="/" element={<Greetings />} />
+            <Route path="/" element={<Greeting />} />
           </Routes>
         </div>
       </BrowserRouter>
