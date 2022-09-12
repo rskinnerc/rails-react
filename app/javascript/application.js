@@ -11,17 +11,21 @@ import {
   Route,
 } from "react-router-dom";
 import Greetings from './components/greetings'
+import { store } from './store/store'
+import { Provider } from 'react-redux'
 
 function App() {
   return (
-    <BrowserRouter>
-      <div>
-        <h1>Hello, React Router!</h1>
-        <Routes>
-          <Route path="/" element={<Greetings />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <div>
+          <h1>Hello, React Router!</h1>
+          <Routes>
+            <Route path="/" element={<Greetings />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
