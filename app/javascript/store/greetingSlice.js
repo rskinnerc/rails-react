@@ -4,10 +4,16 @@ const initialState = {
   message: '',
 }
 
-const fetchRandomGreeting = createAsyncThunk(
+export const fetchRandomGreeting = createAsyncThunk(
   'greeting/fetchRandomGreeting',
   async () => {
-    const response = await fetch('http://localhost:3000/greetings')
+    const response = await fetch('http://127.0.0.1:3000/greetings', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      mode: 'same-origin',
+    })
     const data = await response.json()
     return data
   }
@@ -21,7 +27,7 @@ export const greetingSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchRandomGreeting.fulfilled, (state, action) => {
-      state.message = action.payload
+      state.message = action.payload[0]
     })
   },
 })
